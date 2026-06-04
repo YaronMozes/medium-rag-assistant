@@ -1,0 +1,29 @@
+{
+  "name": "medium-rag-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit",
+    "ingest": "tsx scripts/ingest.ts",
+    "check:models": "tsx scripts/check-models.ts"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "latest",
+    "csv-parse": "latest",
+    "dotenv": "latest",
+    "next": "latest",
+    "openai": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
