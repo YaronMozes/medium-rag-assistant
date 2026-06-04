@@ -1,6 +1,7 @@
 .env
 .env.local
 .env*.local
+.vercel/
 node_modules/
 .next/
 dist/
@@ -13,3 +14,5 @@ next-dev.log
 next-dev.err.log
 ingest*.log
 *.tsbuildinfo
+
+.vercel
