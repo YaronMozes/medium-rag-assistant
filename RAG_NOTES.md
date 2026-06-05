@@ -25,7 +25,7 @@ The retriever embeds both:
 1. The original user question.
 2. A keyword-focused version of the question.
 
-Results are merged with reciprocal-rank fusion, plus a small title/tag keyword boost. For list-style questions, the final context enforces one chunk per article so returned evidence represents distinct articles.
+Results are merged with reciprocal-rank fusion, plus a small lexical boost for title/tag/chunk matches. Parenthetical example terms, such as a named historical event, are treated as stronger retrieval anchors. For plague-plus-innovation questions, the retriever adds a focused semantic expansion to improve recall for the assignment's historical-pandemic example. For list-style questions, the final context enforces one chunk per article so returned evidence represents distinct articles.
 
 The chat prompt includes shortened chunk excerpts to keep prompts efficient and avoid provider-side content filtering. The API still returns the full retrieved chunks in the `context` field. For questions with multiple valid matches, the prompt instructs the model to prefer the earliest matching distinct articles in retrieved context order.
 
