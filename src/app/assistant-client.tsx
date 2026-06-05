@@ -19,9 +19,9 @@ type PromptResponse = {
 };
 
 const examples = [
-  "Which article presents marketing as a conversation for introverted writers, and who is the author?",
+  "Find an article that reframes marketing as a conversation with readers, aimed at writers who find self-promotion uncomfortable. Provide the title and author.",
   "List exactly 3 articles about education. Return only the titles.",
-  "Find an article that argues past pandemics can spur innovation and recovery, and summarise its central argument.",
+  "Find an article that argues past pandemics (such as the bubonic plague) can spur innovation and recovery, and summarise its central argument.",
   "I want practical, beginner-friendly advice on building habits that actually stick. Which article would you recommend, and why?"
 ];
 

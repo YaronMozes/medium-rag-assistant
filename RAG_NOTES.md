@@ -47,11 +47,11 @@ The initial 3-article smoke test created 7 chunks. The remaining full run used `
 
 ## Validation Queries
 
-These assignment-style queries were tested locally through `POST /api/prompt`:
+These assignment queries were tested locally through `POST /api/prompt`:
 
-- Precise fact retrieval: marketing as a conversation for introverted writers.
-- Multi-result listing: exactly 3 education article titles.
-- Summary extraction: plague/pandemic history as a driver of public-health innovation.
-- Recommendation: beginner-friendly advice for habits that stick.
+- "Find an article that reframes marketing as a conversation with readers, aimed at writers who find self-promotion uncomfortable. Provide the title and author."
+- "List exactly 3 articles about education. Return only the titles."
+- "Find an article that argues past pandemics (such as the bubonic plague) can spur innovation and recovery, and summarise its central argument."
+- "I want practical, beginner-friendly advice on building habits that actually stick. Which article would you recommend, and why?"
 
 `GET /api/stats` returns the required strict JSON shape.
