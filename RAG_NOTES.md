@@ -18,6 +18,36 @@ Rationale:
 - `overlap_ratio=0.2` reduces boundary loss without excessive duplicate embedding cost.
 - `top_k=7` gives the chat model enough evidence for multi-result and summary questions while keeping prompt size controlled.
 
+## Hyperparameter Comparison
+
+I ran a cost-bounded comparison before keeping the final production settings. The production namespace (`medium-c800-o20`) was not changed during this experiment.
+
+Method:
+
+- Fixed evaluation subset: 650 articles from CSV windows `0-299`, `5300-5419`, `5940-6039`, and `6550-6679`.
+- The subset includes the known target rows for the four assignment examples, plus surrounding distractor articles from the same corpus areas.
+- `top_k` was fixed at 7 for all runs.
+- Each config was embedded into its own Pinecone namespace.
+- Evaluation checked whether relevant distinct articles appeared in the retrieved context for the four exact assignment questions. Mean scores were recorded as a secondary signal only.
+
+Comparison results:
+
+| Config | Eval namespace | Chunks | Approx. embedding tokens | Retrieval result |
+| --- | --- | ---: | ---: | --- |
+| `512 / 0.2` | `eval-20260605-c512-o20` | 2,603 | 1,313,352 | Target article ranked 1 for fact, pandemic summary, and habits recommendation. Education query returned 6 distinct relevant article contexts. Higher chunk count. |
+| `800 / 0.2` | `eval-20260605-c800-o20` | 1,739 | 1,251,209 | Target article ranked 1 for fact, pandemic summary, and habits recommendation. Education query returned 7 distinct relevant article contexts. Best balance of relevance, distinctness, and cost. |
+| `800 / 0.3` | `eval-20260605-c800-o30` | 1,848 | 1,369,184 | Target article ranked 1 for fact, pandemic summary, and habits recommendation. Education query returned 6 distinct relevant article contexts. More overlap increased cost without improving retrieval. |
+
+Mean top-k scores by question:
+
+| Config | Fact | Education | Pandemic summary | Habits recommendation |
+| --- | ---: | ---: | ---: | ---: |
+| `512 / 0.2` | 0.5811 | 0.3770 | 0.4829 | 0.5459 |
+| `800 / 0.2` | 0.5760 | 0.3744 | 0.4834 | 0.5527 |
+| `800 / 0.3` | 0.5677 | 0.3784 | 0.4727 | 0.5579 |
+
+Conclusion: `800 / 0.2` was selected because it kept all key targets in the top retrieved context, produced the strongest distinct-article behavior for the education listing, and avoided the extra chunk volume of the other tested settings.
+
 ## Retrieval Details
 
 The retriever embeds both:

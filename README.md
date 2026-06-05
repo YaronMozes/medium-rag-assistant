@@ -2,6 +2,11 @@
 
 Vercel-ready RAG assistant for the `medium-english-50mb.csv` assignment dataset.
 
+## Submission Links
+
+- Live app: https://medium-rag-assistant-gamma.vercel.app
+- GitHub repository: https://github.com/YaronMozes/medium-rag-assistant
+
 ## Configuration
 
 Copy `.env.example` to `.env.local` and fill in:
@@ -28,6 +33,15 @@ Current RAG hyperparameters:
 ```
 
 Chunks use approximate tokens, estimated as `ceil(character_count / 4)`.
+
+The final settings were chosen after a cost-bounded comparison on a fixed 650-article validation subset. See `RAG_NOTES.md` for the methodology and results.
+
+## Question Coverage
+
+- Precise fact retrieval: multi-query retrieval finds the matching article and returns title/author with context-grounded evidence.
+- Multi-result topic listing: list-style questions limit the final context to distinct articles and return exactly the requested titles.
+- Key idea summary extraction: semantic retrieval, keyword retrieval, and parenthetical anchor terms help identify the relevant article before summarization.
+- Recommendation with justification: the assistant recommends one retrieved article and explains the choice from article metadata/passages.
 
 ## Development
 
