@@ -19,9 +19,10 @@ type PromptResponse = {
 };
 
 const examples = [
+  "Which article presents marketing as a conversation for introverted writers, and who is the author?",
   "List exactly 3 articles about education. Return only the titles.",
-  "I want practical, beginner-friendly advice on building habits that actually stick. Which article would you recommend, and why?",
-  "Find an article that argues past pandemics can spur innovation and recovery, and summarise its central argument."
+  "Find an article that argues past pandemics can spur innovation and recovery, and summarise its central argument.",
+  "I want practical, beginner-friendly advice on building habits that actually stick. Which article would you recommend, and why?"
 ];
 
 export function AssistantClient({ stats }: { stats: Stats }) {
