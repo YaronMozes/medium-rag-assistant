@@ -51,7 +51,7 @@ ${question}
 Retrieved Medium article context:
 ${formattedContext}
 
-Answer the question using only the retrieved context above. If the question describes an article semantically or gives examples with phrases like "such as", use those as clues rather than requiring exact word matches. If a retrieved article supports the main requested idea with different wording, identify it and explain the support from context. If the question asks for titles only, return only titles. If it asks for a recommendation or summary, ground the answer in the article metadata or passage text.`;
+Answer the question using only the retrieved context above. If the question describes an article semantically or gives examples with phrases like "such as", use those as clues rather than requiring exact word matches. If a retrieved article supports the main requested idea with different wording, identify it and explain the support from context. When several context items satisfy the question, prefer the earliest matching distinct articles in the retrieved context order. If the question asks for titles only, return only titles. For "exactly N" title-list questions, return exactly N distinct titles, one per line, in retrieved context order, with no bullets or explanation. If it asks for a recommendation or summary, ground the answer in the article metadata or passage text.`;
 
   return {
     System: SYSTEM_PROMPT,

@@ -27,7 +27,7 @@ The retriever embeds both:
 
 Results are merged with reciprocal-rank fusion, plus a small title/tag keyword boost. For list-style questions, the final context enforces one chunk per article so returned evidence represents distinct articles.
 
-The chat prompt includes shortened chunk excerpts to keep prompts efficient and avoid provider-side content filtering. The API still returns the full retrieved chunks in the `context` field.
+The chat prompt includes shortened chunk excerpts to keep prompts efficient and avoid provider-side content filtering. The API still returns the full retrieved chunks in the `context` field. For questions with multiple valid matches, the prompt instructs the model to prefer the earliest matching distinct articles in retrieved context order.
 
 ## Ingestion
 
